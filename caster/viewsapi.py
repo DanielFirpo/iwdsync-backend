@@ -41,6 +41,7 @@ def update_caster(request):
     youtube_url = request.data.get("youtube_url")
     irl_time = request.data.get("irl_time")
     youtube_time = request.data.get("youtube_time")
+    stream_delay = request.data.get("stream_delay")
     if request.user.is_authenticated:
         caster = request.user.caster
         if youtube_url is not None:
@@ -49,6 +50,8 @@ def update_caster(request):
             caster.irl_time = irl_time
         if youtube_time is not None:
             caster.youtube_time = youtube_time
+        if stream_delay is not None:
+            caster.stream_delay = stream_delay
         caster.save()
         data = {"message": "updated caster data"}
         status_code = 200
