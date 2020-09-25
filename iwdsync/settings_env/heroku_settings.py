@@ -52,6 +52,7 @@ CORS_ORIGIN_WHITELIST = [
     "https://iwdlive.com",
     "https://costream.me",
 ]
+
 CSRF_TRUSTED_ORIGINS = [
     "iwdsync.herokuapp.com",
     "iwdsync.vercel.app",
