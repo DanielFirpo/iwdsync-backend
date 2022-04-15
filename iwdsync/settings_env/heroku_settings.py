@@ -23,21 +23,11 @@ STATIC_URL = "/static/"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 CACHES = {
-    "default": {
-        # Use django-bmemcached
-        "BACKEND": "django_bmemcached.memcached.BMemcached",
-        # TIMEOUT is not the connection timeout! It's the default expiration
-        # timeout that should be applied to keys! Setting it to `None`
-        # disables expiration.
-        "TIMEOUT": 60,
-        "LOCATION": config("MEMCACHIER_SERVERS"),
-        "OPTIONS": {
-            "username": config("MEMCACHIER_USERNAME"),
-            "password": config("MEMCACHIER_PASSWORD"),
-        },
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'iwd-cache',
     }
 }
-
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
