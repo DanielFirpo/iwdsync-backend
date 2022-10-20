@@ -1,20 +1,17 @@
-"""iwdsync/settings_env/heroku_settings.py
-"""
+from iwdsync.settings import *
 import os
 import dj_database_url
-from decouple import config
 
 import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 
 DEBUG = False
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-ALLOWED_HOSTS = ["iwdsync.herokuapp.com"]
+ALLOWED_HOSTS = ["iwdsync.fly.dev"]
 
 
 DATABASES = {}
-DATABASES["default"] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+DATABASES["default"] = dj_database_url.parse(os.environ.get('DATABASE_URL', 'sqlite:///fake.db'), conn_max_age=600)
 
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -34,8 +31,6 @@ CSRF_COOKIE_SECURE = True
 
 CORS_ORIGIN_WHITELIST = [
     "https://iwdsync.vercel.app",
-    # "https://iwdsync.antigravity.vercel.app",
-    # "https://iwdsync-git-master.antigravity.vercel.app",
     "https://iwdsync-git-master.import-antigravity.vercel.app",
     "https://iwdsync.import-antigravity.vercel.app",
     "https://iwdsync.app",
@@ -46,8 +41,6 @@ CORS_ORIGIN_WHITELIST = [
 CSRF_TRUSTED_ORIGINS = [
     "iwdsync.herokuapp.com",
     "iwdsync.vercel.app",
-    # "iwdsync.antigravity.vercel.app",
-    # "iwdsync-git-master.antigravity.vercel.app",
     "iwdsync-git-master.import-antigravity.vercel.app",
     "iwdsync.import-antigravity.vercel.app",
     "iwdsync.app",
@@ -57,7 +50,7 @@ CSRF_TRUSTED_ORIGINS = [
 CORS_ALLOW_CREDENTIALS = True
 
 sentry_sdk.init(
-    dsn=config("SENTRY_DSN", ""),
+    dsn=os.environ.get("SENTRY_DSN", ""),
     integrations=[DjangoIntegration()],
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.

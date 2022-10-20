@@ -2,10 +2,7 @@ asgiref==3.2.10
 certifi==2020.6.20
 dj-database-url==0.5.0
 Django==3.0.8
-django-bmemcached==0.3.0
 django-cors-headers==3.4.0
-django-heroku-memcacheify==1.0.0
-django-pylibmc==0.6.1
 django-rest-framework==0.1.0
 djangorestframework==3.11.0
 flake8==3.8.3
@@ -16,9 +13,7 @@ parso==0.7.1
 psycopg2==2.8.5
 pycodestyle==2.6.0
 pyflakes==2.2.0
-pylibmc==1.6.1
-python-binary-memcached==0.29.0
-python-decouple==3.3
+python-dotenv==0.20
 pytz==2020.1
 sentry-sdk==0.16.2
 six==1.15.0
