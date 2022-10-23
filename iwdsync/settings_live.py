@@ -35,6 +35,7 @@ CORS_ORIGIN_WHITELIST = [
     "https://iwdsync.import-antigravity.vercel.app",
     "https://iwdsync.app",
     "https://iwdlive.com",
+    "https://dev.iwdlive.com",
     "https://costream.me",
 ]
 
@@ -45,7 +46,9 @@ CSRF_TRUSTED_ORIGINS = [
     "iwdsync.import-antigravity.vercel.app",
     "iwdsync.app",
     "iwdlive.com",
+    "dev.iwdlive.com",
     "costream.me",
+    "iwdsync.fly.com",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
