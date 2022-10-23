@@ -48,7 +48,7 @@ CSRF_TRUSTED_ORIGINS = [
     "iwdlive.com",
     "dev.iwdlive.com",
     "costream.me",
-    "iwdsync.fly.com",
+    "iwdsync.fly.dev",
 ]
 CORS_ALLOW_CREDENTIALS = True
 
