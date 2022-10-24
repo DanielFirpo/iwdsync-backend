@@ -1,6 +1,6 @@
 django<3.3
 dj-database-url
-django-rest-framework
+djangorestframework
 django-cors-headers
 flake8
 gunicorn
