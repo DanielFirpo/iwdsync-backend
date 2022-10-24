@@ -3,3 +3,4 @@
 *.pyc
 .env
 .DS_Store
+iwdsync/settings_local.py

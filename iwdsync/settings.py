@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from decouple import config
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,14 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY", "oibpy+v^m9-&a_@7l1i*q%m%a3h!j4d4jt#cefu5o0u$9)96y5")
-
-HOST_ENV = config("HOST_ENV", "DEV")
-if HOST_ENV == "DEV":
-    from iwdsync.settings_env.dev_settings import *
-else:
-    from iwdsync.settings_env.heroku_settings import *
-
+SECRET_KEY = os.environ.get("SECRET_KEY", "oibpy+v^m9-&a_@7l1i*q%m%a3h!j4d4jt#cefu5o0u$9)96y5")
 
 # Application definition
 INSTALLED_APPS = [

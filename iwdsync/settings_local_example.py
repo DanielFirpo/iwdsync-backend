@@ -1,7 +1,6 @@
-"""iwdsync/settings_env/dev_settings.py
-"""
+from iwdsync.settings import *
 import os
-from decouple import config
+import dj_database_url
 
 
 DEBUG = True
@@ -9,16 +8,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 ALLOWED_HOSTS = ["localhost"]
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
-        'PASSWORD': config('DB_PASS'),
-    }
-}
+DATABASES = {}
+DATABASES["default"] = dj_database_url.parse(os.environ['DATABASE_URL'], conn_max_age=600, ssl_require=True)
 
 CACHES = {
     'default': {
@@ -29,3 +20,5 @@ CACHES = {
 CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
 CSRF_TRUSTED_ORIGINS = ['localhost:3000', 'localhost:8000']
 CORS_ALLOW_CREDENTIALS = True
+
+AUTH_PASSWORD_VALIDATORS = []
