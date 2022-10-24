@@ -1,0 +1,10 @@
+django<3.3
+dj-database-url
+django-rest-framework
+django-cors-headers
+flake8
+gunicorn
+psycopg2==2.8.5
+python-dotenv
+sentry-sdk==0.16.2
+whitenoise

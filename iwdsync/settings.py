@@ -118,3 +118,4 @@ CORS_ALLOW_HEADERS = (
     "cookie",
 )
 # CSRF_USE_SESSIONS = False
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
