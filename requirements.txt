@@ -14,8 +14,11 @@ django==3.2.16
     # via
     #   -r requirements.in
     #   django-cors-headers
+    #   django-extensions
     #   djangorestframework
 django-cors-headers==3.4.0
+    # via -r requirements.in
+django-extensions==3.2.1
     # via -r requirements.in
 djangorestframework==3.14.0
     # via -r requirements.in
@@ -23,6 +26,8 @@ flake8==3.8.3
     # via -r requirements.in
 gunicorn==20.0.4
     # via -r requirements.in
+markupsafe==2.1.1
+    # via werkzeug
 mccabe==0.6.1
     # via flake8
 psycopg2==2.8.5
@@ -43,6 +48,8 @@ sqlparse==0.3.1
     # via django
 urllib3==1.26.12
     # via sentry-sdk
+werkzeug==2.2.2
+    # via -r requirements.in
 whitenoise==5.1.0
     # via -r requirements.in
 
