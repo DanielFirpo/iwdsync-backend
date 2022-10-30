@@ -1,1 +1,4 @@
 DATABASE_URL=postgres://postgres:postgres@db/postgres
+DJANGO_SUPERUSER_PASSWORD=pass
+DJANGO_SUPERUSER_USERNAME=superuser
+DJANGO_SUPERUSER_EMAIL=me@example.com
