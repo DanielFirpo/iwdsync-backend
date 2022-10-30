@@ -9,6 +9,7 @@ from django.core.cache import cache
 
 from caster.models import Caster
 from caster.serializers import CasterSerializer
+import time
 
 
 @csrf_exempt
@@ -109,3 +110,10 @@ def get_csrf(request, format=None):
     token = get_token(request)
     data = {"data": token}
     return Response(data, headers=get_headers(request))
+
+
+@api_view(["GET"])
+def get_server_time(request, format=None):
+    status_code = 200
+    data = {"data": int(round(time.time() * 1000)) }
+    return Response(data, status=status_code, headers=get_headers(request))
