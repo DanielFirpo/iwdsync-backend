@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+  db:
+    image: postgres:13.3-alpine
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file: .docker_env
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/local/Dockerfile
+    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+    links:
+      - db:db
+    env_file: .docker_env
+    depends_on:
+      - db
+    stdin_open: true
