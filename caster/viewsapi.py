@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from django.middleware.csrf import get_token
-from django.views.decorators.csrf import csrf_exempt
 from django.core.cache import cache
 
 from caster.models import Caster
@@ -12,7 +11,6 @@ from caster.serializers import CasterSerializer
 import time
 
 
-@csrf_exempt
 @api_view(["GET", "PUT", "POST"])
 def caster(request, format=None):
     """Get, update, create caster models
@@ -25,15 +23,7 @@ def caster(request, format=None):
             data, status_code = update_caster(request)
         elif action == "create":
             pass
-    return Response(data, status=status_code, headers=get_headers(request))
-
-
-def get_headers(request):
-    token = get_token(request)
-    headers = {
-        # 'Set-Cookie': f'csrftoken={token}; SameSite=None',
-    }
-    return headers
+    return Response(data, status=status_code)
 
 
 def update_caster(request):
@@ -109,11 +99,11 @@ def get_my_caster(request, format=None):
 def get_csrf(request, format=None):
     token = get_token(request)
     data = {"data": token}
-    return Response(data, headers=get_headers(request))
+    return Response(data)
 
 
 @api_view(["GET"])
 def get_server_time(request, format=None):
     status_code = 200
     data = {"data": int(round(time.time() * 1000)) }
-    return Response(data, status=status_code, headers=get_headers(request))
+    return Response(data, status=status_code)
