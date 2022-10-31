@@ -31,21 +31,15 @@ CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = "None"
 SESSION_COOKIE_SAMESITE = "None"
 
-CORS_ORIGIN_WHITELIST = [
-    "https://iwdsync.vercel.app",
-    "https://iwdsync-git-master.import-antigravity.vercel.app",
-    "https://iwdsync.import-antigravity.vercel.app",
-    "https://iwdlive.com",
-    "https://dev.iwdlive.com",
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r"https://iwdlive\.com",
+    r"https://(\w+)\.iwdlive\.com",
+    r"https://iwdsync-\w+-import-antigravity\.vercel\.app",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "iwdsync.vercel.app",
-    "iwdsync-git-master.import-antigravity.vercel.app",
-    "iwdsync.import-antigravity.vercel.app",
-    "iwdsync.app",
-    "iwdlive.com",
-    "dev.iwdlive.com",
+    "iwdlive.com"
+    "*.iwdlive.com",
     "iwdsync.fly.dev",
 ]
 CORS_ALLOW_CREDENTIALS = True
