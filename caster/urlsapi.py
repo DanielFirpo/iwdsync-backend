@@ -10,6 +10,7 @@ urlpatterns = [
     path("get-my-caster/", viewsapi.get_my_caster),
     path("get-csrf/", viewsapi.get_csrf),
     path("get-server-time/", viewsapi.get_server_time),
+    path("auth/login/", viewsapi.login_view),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

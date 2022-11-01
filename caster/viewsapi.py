@@ -1,14 +1,17 @@
 """caster/viewsapi.py
 """
+from django.contrib.auth import login
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 
 from django.middleware.csrf import get_token
 from django.core.cache import cache
+from caster.forms import LoginForm
 
 from caster.models import Caster
 from caster.serializers import CasterSerializer
 import time
+import json
 
 
 @api_view(["GET", "PUT", "POST"])
@@ -107,3 +110,13 @@ def get_server_time(request, format=None):
     status_code = 200
     data = {"data": int(round(time.time() * 1000)) }
     return Response(data, status=status_code)
+
+
+@api_view(['POST'])
+def login_view(request, format=None):
+    form = LoginForm(request.data, request=request)
+    if form.is_valid():
+        login(request, form.user)
+    elif form.errors:
+        return Response(json.loads(form.errors.as_json()), status=400)
+    return Response({}, status=200)
