@@ -15,5 +15,7 @@ class LoginForm(forms.Form):
         self.user = authenticate(self.request, username=cleaned['username'], password=cleaned['password'])
         if not self.user:
             raise forms.ValidationError('Username or password was incorrect.')
+        elif not self.user.is_active:
+            raise forms.ValidationError('User is inactive.')
         return cleaned
 
